@@ -30,7 +30,7 @@ public class LoginTest {
 		new Utils(driver).getApplication();
 		LoginPage lp = new LoginPage(driver);
 		lp.getLoginPage();
-		lp.login("tonapeshraddha11@gmail.com", "shraddha123");
+		lp.login("xyz@gmail.com", "xyz123");
 		lp.logout();
 	}
 	
