@@ -3,6 +3,8 @@ package PageObjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Page Object For Login Page
@@ -11,6 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class LoginPage {
 
 	WebDriver driver;
+	private static Logger LOG = LoggerFactory.getLogger(LoginPage.class);
 
 	public LoginPage(WebDriver driver) {
 		this.driver = driver;
@@ -24,6 +27,7 @@ public class LoginPage {
 	}
 
 	public void login(String username, String password) {
+	    LOG.info("Logging in with credentials:- " + username + "/" + password);
 		driver.findElement(By.name("email")).sendKeys(username);
 		driver.findElement(By.name("password")).sendKeys(password);
 		driver.findElement(By.xpath(".//div[@class='logInModule grayOuterBox']/form/div[3]/div[2]/button")).click();

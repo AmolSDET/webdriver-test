@@ -15,6 +15,7 @@ public class Utils {
 	}
 
 	public void getApplication() {
+	    driver.manage().deleteAllCookies();
 		driver.get(System.getProperty("applicationUrl"));
 	}
 
