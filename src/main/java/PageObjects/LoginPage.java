@@ -2,9 +2,10 @@ package PageObjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import Utilities.Utils;
 
 /**
  * Page Object For Login Page
@@ -20,9 +21,8 @@ public class LoginPage {
 	}
 
 	public void getLoginPage() {
-		Utils ut = new Utils(driver);
 		driver.findElement(By.cssSelector(".headerSignIn .signInModule .currentStatusBlock .helloContainer .signup")).click();
-		new WebDriverWait(driver, 10).until(ut.elementVisibleTest(driver.findElement(By.id("userActions")), true));
+		new Utils(driver).waitForElementVisible(".//*[@id='userActions']", 10, true);
 		driver.findElement(By.xpath(".//*[@id='headerSignIn']")).click();
 	}
 
@@ -34,9 +34,8 @@ public class LoginPage {
 	}
 
 	public void logout() {
-		Utils ut = new Utils(driver);
 		driver.findElement(By.cssSelector(".headerSignIn .signInModule .currentStatusBlock .helloContainer .hello")).click();
-		new WebDriverWait(driver, 10).until(ut.elementVisibleTest(driver.findElement(By.id("userActions")), true));
+		new Utils(driver).waitForElementVisible(".//*[@id='userActions']", 10, true);
 		driver.findElement(By.xpath(".//*[@id='userActions']/div[3]/a")).click();
 	}
 

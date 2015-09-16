@@ -18,9 +18,16 @@ public class ResultsPage {
 		this.driver = driver;
 	}
 
-	public List<WebElement> opaqueResultList() {
+	private List<WebElement> opaqueResultList() {
 		List<WebElement> results = driver.findElements(By.cssSelector("#opaque-hotel-results .results .opaque .singleResult.opaque"));
 		return results;
+	}
+	
+	public boolean validateOpaqueResults() {
+		if(driver.findElements(By.cssSelector("#opaque-hotel-results .results .opaque .singleResult.opaque")).size() > 10) {
+			return true;
+		}
+		return false;
 	}
 
 	public void selectPgood(String neighborhood, String starRating) {

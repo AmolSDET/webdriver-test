@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import Utilities.Utils;
+
 public class FareFinder {
 
 	WebDriver driver;
@@ -23,7 +25,7 @@ public class FareFinder {
 		driver.findElement(By.id("endDateCalendarHotel-field")).sendKeys(endDate);
 		driver.findElement(By.id("findHotelButton")).click();
 		LOG.info("Searching with following params:- " + dest + ", " + startDate + ", " + endDate);
-		//new WebDriverWait(driver, 10).until(new Utils(driver).elementVisibleTest(driver.findElement(By.xpath(".//*[@id='hotelResultsUpdatingLayer']/div/div/div[2]/img")), false));
+		new Utils(driver).waitForElementVisible(".//*[@id='hotelResultsUpdatingLayer']/div/div/div[2]/img", 10, false);
 	}
 
 }

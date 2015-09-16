@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 import PageObjects.DetailsPage;
 import PageObjects.FareFinder;
 import PageObjects.ResultsPage;
-import PageObjects.Utils;
+import Utilities.Utils;
 
 public class HotelResultsTest {
 
@@ -21,16 +21,15 @@ private static Logger LOG = LoggerFactory.getLogger(HotelResultsTest.class);
 
 	@BeforeClass
 	public static void invokeDriver() {
-		//ProfilesIni p = new ProfilesIni();
-		//FirefoxProfile fp = p.getProfile("automation");
 		driver = new FirefoxDriver();
 	}
 
 	@Test
 	public void testResults() {
+		LOG.info("validating number of opaque results");
 		new Utils(driver).getApplication();
 		new FareFinder(driver).searchHotel("sfo", "10/15/15", "10/16/15");
-		LOG.info("Number of opaque results found:- " + new ResultsPage(driver).opaqueResultList().size());
+		Assert.assertTrue("Number of opaque results is less than expected", new ResultsPage(driver).validateOpaqueResults());
 	}
 
 	@Test
@@ -39,7 +38,7 @@ private static Logger LOG = LoggerFactory.getLogger(HotelResultsTest.class);
         new FareFinder(driver).searchHotel("sfo", "10/15/15", "10/16/15");
         new ResultsPage(driver).selectPgood("S. SFO Intl Airport - Burlingame area hotel", "4");
         Assert.assertTrue("Invalid details on details page", new DetailsPage(driver).
-                ValidateHotelDetails("S. SFO Intl Airport - Burlingame area hotel", "4"));
+                ValidateHotelDetails("S. SFO Intl Airport - Burlingame area", "4"));
     }
 
 	@AfterClass

@@ -9,7 +9,7 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.firefox.internal.ProfilesIni;
 
 import PageObjects.LoginPage;
-import PageObjects.Utils;
+import Utilities.Utils;
 
 /**
  * Unit test for simple App.
@@ -30,7 +30,7 @@ public class LoginTest {
 		new Utils(driver).getApplication();
 		LoginPage lp = new LoginPage(driver);
 		lp.getLoginPage();
-		lp.login("xyz@gmail.com", "xyz123");
+		lp.login("xyz123@gmail.com", "xyz111");
 		lp.logout();
 	}
 
